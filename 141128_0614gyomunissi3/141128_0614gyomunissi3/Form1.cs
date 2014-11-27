@@ -69,6 +69,11 @@ namespace _141128_0614gyomunissi3
             label1.Text = textBox1.Text;
         }
 
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
 
     }
 }
