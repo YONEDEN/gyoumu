@@ -77,6 +77,7 @@ namespace _141128_0614gyomunissi3
             label1.Text = textBox1.Text;
         }
         class TestIO
+        //ファイルI/O試験
         {
             static void sub()
             {
