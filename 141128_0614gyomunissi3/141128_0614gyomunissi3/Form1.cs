@@ -73,7 +73,5 @@ namespace _141128_0614gyomunissi3
         {
 
         }
-
-
     }
 }
