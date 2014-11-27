@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms; 
 using System.IO;
 
+//Version0.1　Gitテスト用
+
+
 namespace _141128_0614gyomunissi3
 {
     public partial class Form1 : Form
