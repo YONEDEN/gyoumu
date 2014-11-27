@@ -6,13 +6,15 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
+using System.Windows.Forms; 
+using System.IO;
 
 namespace _141128_0614gyomunissi3
 {
     public partial class Form1 : Form
     {
         public Form1()
+        //初期設定
         {
             InitializeComponent();
             this.Text = "業務日誌";
@@ -23,6 +25,7 @@ namespace _141128_0614gyomunissi3
 
 
         private void button1_Click(object sender, EventArgs e)
+        //消去ボタン動作        
         {
         //    this.Text = textBox1.Text;
         //    label1.Text = textBox1.Text;
@@ -56,6 +59,7 @@ namespace _141128_0614gyomunissi3
             
             
         private void timer1_Tick(object sender, EventArgs e)
+        //時計表示
         {
             DateTime datetime = DateTime.Now;
 
@@ -65,13 +69,24 @@ namespace _141128_0614gyomunissi3
         }
 
         private void textBox1_TextChanged_1(object sender, EventArgs e)
+        //ラベルににテキストボックス転記
         {
             label1.Text = textBox1.Text;
         }
-
-        private void label2_Click(object sender, EventArgs e)
+        class TestIO
         {
+            static void sub()
+            {
+                if (!Directory.Exists("test"))
+                    Directory.CreateDirectory("test");
 
-        }
-    }
+                for (int i = 0; i < 5; ++i)
+                {
+                    string fileName = string.Format(@"test\{0}.txt", i);
+                    string contents = string.Format("Test file No. {0}", i);
+                    File.WriteAllText(fileName, contents);
+                }
+            }
+}
+  }
 }
