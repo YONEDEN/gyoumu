@@ -14,6 +14,7 @@ namespace _141128_0614gyomunissi3
         [STAThread]
         static void Main()
         {
+            //string f_name = "test.csv";
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
