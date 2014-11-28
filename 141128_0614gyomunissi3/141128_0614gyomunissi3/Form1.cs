@@ -66,36 +66,21 @@ namespace _141128_0614gyomunissi3
 
             label2.Text = datetime.ToLongDateString() + "（" + Wlet + "）";//ラベル２は日付
             label3.Text = datetime.ToLongTimeString();//ラベル３は時刻
-
-
         }
-
-
-
-
-
 
         private void button2_Click(object sender, System.EventArgs e)
         //ファイル読み込みボタン動作
         {
-            //  StreamReader sr =
-            //              new StreamReader(name.f_name, sjisEnc);
-            //  String s = sr.ReadToEnd();
-            //  sr.Close();
-            //  MessageBox.Show("読み込みます");
-            //  textBox1.Text = s;
-            //  filecheck();
-            //openFileDialog1.Title = "???";  // タイトルバーの文字列
-
+            //String load_fn = "";
             OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Title = "プロジェクトファイルを開く";
             ofd.InitialDirectory = "";  // 最初に表示されるディレクトリ
             ofd.Filter = "datファイル(*.dat)|*.dat|すべてのファイル(*.*)|*.*";  //「ファイルの種類」を指定
             ofd.CheckFileExists = true;
 
-
             if (ofd.ShowDialog() == DialogResult.OK)
             {
-                System.IO.Stream stream;
+                label4.Text = ofd.FileName; System.IO.Stream stream;
                 stream = ofd.OpenFile();
                 if (stream != null)
                 {
@@ -166,23 +151,25 @@ namespace _141128_0614gyomunissi3
             this.Close();
         }
 
-        private void filecheck()
+        public void filecheck()
         //ファイル最終更新時刻取得
         {
             DateTime fct, flat, flwt;
-            //string f_name = "test.csv";
             try
             {
-                fct = File.GetCreationTime(name.f_name);
-                flat = File.GetLastAccessTime(name.f_name);
-                flwt = File.GetLastWriteTime(name.f_name);
+                fct = File.GetCreationTime(label4.Text);
+                flat = File.GetLastAccessTime(label4.Text);
+                flwt = File.GetLastWriteTime(label4.Text);
             }
             catch
             {
                 label1.Text = "ファイル名がＮＧです！";
                 return;
             }
-            label1.Text = "最終更新 = " + flwt.ToString() + ": 作業ファイル名 " + name.f_name;
+            label1.Text = "作成日　 = " + fct.ToString();
+            label5.Text = "最終閲覧 = " + flat.ToString();
+            label6.Text = "最終更新 = " + flwt.ToString();
+
         }
 
    
