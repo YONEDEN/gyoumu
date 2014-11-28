@@ -27,6 +27,7 @@ namespace _141128_0614gyomunissi3
             this.button2.Text = "読み込み";
             this.button3.Text = "上書き";
             this.button4.Text = "ファイル消去";
+            this.button5.Text = "終了";
             //時計起動
             timer1.Start();
             filecheck();
@@ -37,7 +38,7 @@ namespace _141128_0614gyomunissi3
         {
             DialogResult result = MessageBox.Show("フォーム内を消去しますか？",
                 "質問",
-                MessageBoxButtons.YesNoCancel,
+                MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question,
                 MessageBoxDefaultButton.Button2);
 
@@ -51,10 +52,6 @@ namespace _141128_0614gyomunissi3
             {
                 //「いいえ」が選択された時
                 textBox1.Text = textBox1.Text;
-            }
-            else if (result == DialogResult.Cancel)
-            {
-                //「キャンセル」が選択された時
             }
         }
 
@@ -70,30 +67,64 @@ namespace _141128_0614gyomunissi3
             label2.Text = datetime.ToLongDateString() + "（" + Wlet + "）";//ラベル２は日付
             label3.Text = datetime.ToLongTimeString();//ラベル３は時刻
 
+
         }
+
+
+
+
+
 
         private void button2_Click(object sender, System.EventArgs e)
         //ファイル読み込みボタン動作
         {
-            //string f_name = "test.csv";
-            Encoding sjisEnc = Encoding.GetEncoding("Shift_JIS");
-            StreamReader sr =
-                        new StreamReader(name.f_name, sjisEnc);
-            String s = sr.ReadToEnd();
-            sr.Close();
-            MessageBox.Show("読み込みます");
-            textBox1.Text = s;
-            filecheck();
-        }
+            //  StreamReader sr =
+            //              new StreamReader(name.f_name, sjisEnc);
+            //  String s = sr.ReadToEnd();
+            //  sr.Close();
+            //  MessageBox.Show("読み込みます");
+            //  textBox1.Text = s;
+            //  filecheck();
+            //openFileDialog1.Title = "???";  // タイトルバーの文字列
 
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.InitialDirectory = "";  // 最初に表示されるディレクトリ
+            ofd.Filter = "datファイル(*.dat)|*.dat|すべてのファイル(*.*)|*.*";  //「ファイルの種類」を指定
+            ofd.CheckFileExists = true;
+
+
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                System.IO.Stream stream;
+                stream = ofd.OpenFile();
+                if (stream != null)
+                {
+                    //内容を読み込み、表示する
+                    //Encoding sjisEnc = Encoding.GetEncoding("Shift_JIS");
+                    System.IO.StreamReader sr =
+                           new System.IO.StreamReader(stream,
+                           System.Text.Encoding.GetEncoding("Shift_JIS"));
+                    String s = sr.ReadToEnd();
+                    sr.Close();
+                    MessageBox.Show("読み込みます");
+                    textBox1.Text = s;
+                    filecheck();
+                    //Console.WriteLine(sr.ReadToEnd());
+                    //閉じる
+                    sr.Close();
+                    stream.Close();
+                    //textBox1.Text = ofd.FileName;
+                }
+            }
+
+        }
         private void button3_Click(object sender, System.EventArgs e)
         //ファイル出力ボタン操作
         {
-        //  string f_name = "test.csv
             Encoding sjisEnc = Encoding.GetEncoding("Shift_JIS");
             StreamWriter writer =
                         new StreamWriter(name.f_name, false, sjisEnc);
-            writer.Write(textBox1.Text+name.dcode+label2+label3.Text);
+            writer.Write(textBox1.Text + name.dcode + DateTime.Now.ToString());
             writer.Close();
             MessageBox.Show("書き込みました");
             filecheck();
@@ -130,6 +161,10 @@ namespace _141128_0614gyomunissi3
             filecheck();
         }
 
+        private void button5_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
 
         private void filecheck()
         //ファイル最終更新時刻取得
@@ -147,19 +182,10 @@ namespace _141128_0614gyomunissi3
                 label1.Text = "ファイル名がＮＧです！";
                 return;
             }
-            label1.Text = "最終更新 = " + flwt.ToString() + ":作業ファイル名" + name.f_name;
+            label1.Text = "最終更新 = " + flwt.ToString() + ": 作業ファイル名 " + name.f_name;
         }
-        //public void week()
-        //曜日取得
-        //{
-            
-            //textBox1.Text = "今日は、" + W + "曜日です。"
-        //}
 
-            // Note: DayOfWeek 列挙型は、曜日を表し、日曜日の 0 から土曜日の 7 までを示す。
-            //       例) DateTime.Now.DayOfWeek.ToString("d")  →  1
-            //           DateTime.Now.DayOfWeek.ToString("f")  →  Monday
-
+   
     }
     class name
         //作業用ファイル名設定(クラス)
@@ -169,5 +195,12 @@ namespace _141128_0614gyomunissi3
         public static string dcode = "[maketime]";//改行文字用固定変数
     }
 
+  //  class open
+        //OpenFileDialogクラスのインスタンスを作成
+  //  {
+  //         OpenFileDialog ofd = new OpenFileDialog1();
+  //  }
+            //ダイアログを表示する
+              
 
 }
