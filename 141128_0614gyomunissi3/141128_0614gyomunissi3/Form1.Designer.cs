@@ -62,12 +62,15 @@
             // 
             // textBox1
             // 
+            this.textBox1.AcceptsTab = true;
             this.textBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.textBox1.ImeMode = System.Windows.Forms.ImeMode.On;
             this.textBox1.Location = new System.Drawing.Point(45, 118);
+            this.textBox1.MaximumSize = new System.Drawing.Size(520, 400);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(548, 397);
+            this.textBox1.Size = new System.Drawing.Size(520, 400);
             this.textBox1.TabIndex = 1;
             // 
             // label2
@@ -169,6 +172,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(700, 565);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
