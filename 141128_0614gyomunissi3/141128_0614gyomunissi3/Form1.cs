@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Text.RegularExpressions ;  // for Regex
 
-//Version0.1　中途半端な業務日誌用テキストエディタ
+//Version0.1　中途半端な業務日誌用テキストエディタ　GitHub設定検証用
 
 namespace _141128_0614gyomunissi3
 {
